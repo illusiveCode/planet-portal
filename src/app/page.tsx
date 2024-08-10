@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { NextPage } from "next";
+import StatsCard from "./components/StatsCard";
 
-const Home = () => (
-  <div>
-    <Link href="/planets/earth">GO TO EARTH</Link>
+const Home: NextPage<any> = () => (
+  <div className="w-full">
+    <StatsCard title="Radius" unit="KM" value={50.7} />
   </div>
 );
 
