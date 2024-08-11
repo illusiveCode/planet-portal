@@ -11,7 +11,7 @@ const tailwindConfig: Config = {
       mobile: "375px",
       tablet: "768px",
       laptop: "1024px",
-      desktop: "1200px",
+      desktop: "1440px",
     },
     container: {
       center: true,
