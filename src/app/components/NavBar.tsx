@@ -6,52 +6,64 @@ import { FC } from "react";
 import Image from "next/image";
 import hamburgerIcon from "@/../../assets/icon-hamburger.svg";
 
+// Define an array of planets with their respective colors
+const planets = [
+  { name: "MERCURY", color: "bg-primary-skyBlue", href: "/planets/mercury" },
+  { name: "VENUS", color: "bg-primary-gold", href: "/planets/venus" },
+  { name: "EARTH", color: "bg-primary-blue", href: "/planets/earth" },
+  { name: "MARS", color: "bg-primary-brightRed", href: "/planets/mars" },
+  { name: "JUPITER", color: "bg-primary-orange", href: "/planets/jupiter" },
+  { name: "SATURN", color: "bg-primary-gold", href: "/planets/saturn" },
+  { name: "URANUS", color: "bg-primary-teal", href: "/planets/uranus" },
+  { name: "NEPTUNE", color: "bg-primary-blue", href: "/planets/neptune" },
+];
+
 const Navbar: FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <nav className="py-4 flex justify-between items-center tablet:flex-col  text-white">
+    <nav className="py-4 flex justify-between items-center tablet:flex-col text-neutral-white relative">
       <Link href="/" className="text-lg font-bold uppercase">
         The Planets
       </Link>
       {/* Hamburger Icon for mobile */}
-      <button className="tablet:hidden" onClick={toggleMenu} aria-label="Toggle Menu">
+      <button className="tablet:hidden z-20" onClick={toggleMenu} aria-label="Toggle Menu">
         <Image src={hamburgerIcon} alt="Menu" width={24} height={24} />
       </button>
-      {/* Navigation Links */}
+      {/* Mobile Menu */}
       <div
         className={`${
-          menuOpen ? "block" : "hidden"
-        } tablet:flex justify-end gap-8 items-center w-full tablet:w-auto flex-wrap`}
+          menuOpen ? "block top-20 left-0 min-h-screen" : "hidden"
+        } tablet:hidden absolute left-0 w-full bg-green-300`}
       >
-        <Link href="/planets/mercury" className="text-white block mt-4 tablet:mt-0">
-          MERCURY
-        </Link>
-        <Link href="/planets/venus" className="text-white block mt-4 tablet:mt-0">
-          VENUS
-        </Link>
-        <Link href="/planets/earth" className="text-white block mt-4 tablet:mt-0">
-          EARTH
-        </Link>
-        <Link href="/planets/mars" className="text-white block mt-4 tablet:mt-0">
-          MARS
-        </Link>
-        <Link href="/planets/jupiter" className="text-white block mt-4 tablet:mt-0">
-          JUPITER
-        </Link>
-        <Link href="/planets/saturn" className="text-white block mt-4 tablet:mt-0">
-          SATURN
-        </Link>
-        <Link href="/planets/uranus" className="text-white block mt-4 tablet:mt-0">
-          URANUS
-        </Link>
-        <Link href="/planets/neptune" className="text-white block mt-4 tablet:mt-0">
-          NEPTUNE
-        </Link>
+        <div className=" pt-20 w-full px-6">
+          {planets.map((planet) => (
+            <Link
+              key={planet.name}
+              href={planet.href}
+              className="flex items-center justify-between py-4 border-b border-neutral-darkGray"
+              onClick={() => setMenuOpen(false)} // Close menu on click
+            >
+              <div className="flex items-center">
+                <span className={`inline-block w-4 h-4 rounded-full ${planet.color} mr-4`}></span>
+                <span className="text-neutral-white">{planet.name}</span>
+              </div>
+              <span className="text-neutral-white">&gt;</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+      {/* Desktop Menu */}
+      <div className="hidden tablet:flex justify-end gap-8 items-center w-full tablet:w-auto h-full flex-wrap">
+        {planets.map((planet) => (
+          <Link key={planet.name} href={planet.href} className="text-neutral-white block">
+            {planet.name}
+          </Link>
+        ))}
       </div>
     </nav>
   );

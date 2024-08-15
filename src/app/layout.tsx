@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
-import Navbar from "@/app/components/NavBar"; // Adjust the path as needed
-import bgStars from "@/../assets/background-stars.svg";
+import Navbar from "@/app/components/NavBar";
+import { Antonio } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const antonio = Antonio({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,10 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-screen bg-neutral-darkBlue`}>
-        <Image className="absolute h-screen object-cover" src={bgStars} alt="" />
+      <body className={`${antonio.className} bg-neutral-darkBlue`}>
         <Navbar />
-        <main className="flex flex-col items-center justify-center">{children}</main>
+
+        <main className="">{children}</main>
       </body>
     </html>
   );
