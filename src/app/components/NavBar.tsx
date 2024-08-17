@@ -37,7 +37,7 @@ const Navbar: FC = () => {
       {/* Mobile Menu */}
       <div
         className={`${
-          menuOpen ? "block top-20 left-0 min-h-screen" : "hidden"
+          menuOpen ? "block top-20 z-40 left-0 min-h-screen" : "hidden"
         } tablet:hidden absolute left-0 w-full bg-green-300`}
       >
         <div className=" pt-20 w-full px-6">
