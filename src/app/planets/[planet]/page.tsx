@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import data from "@/../../data/data.json";
 import StatsCard from "@/app/components/StatsCard";
-import Link from "next/link";
+import PlanetInfo from "@/app/components/PlanetInfo";
+import planet from "@/../../assets/planet-mercury-internal.svg";
+import SubLinks from "@/app/components/SubLinks"; // Import the new component
+import Image from "next/image";
 
 export default function Page({ params }: { params: { planet: string } }) {
   // Find the planet data from the JSON
@@ -15,16 +19,48 @@ export default function Page({ params }: { params: { planet: string } }) {
     return <div className="text-white font-body h-screen">Planet not found.</div>;
   }
 
+  // State to manage the current section (overview, structure, geology)
+  const [currentSection, setCurrentSection] = useState("structure");
+
+  // Dynamically set the image source based on the selected section
+  const imageSrc =
+    currentSection === "overview"
+      ? planetData.images.planet
+      : currentSection === "structure"
+      ? planetData.images.internal
+      : planetData.images.geology;
+
+  // Dynamically set the description and source link based on the selected section
+  const description =
+    currentSection === "overview"
+      ? planetData.overview.content
+      : currentSection === "structure"
+      ? planetData.structure.content
+      : planetData.geology.content;
+
+  const sourceLink =
+    currentSection === "overview"
+      ? planetData.overview.source
+      : currentSection === "structure"
+      ? planetData.structure.source
+      : planetData.geology.source;
+
   return (
-    <div className="text-white font-body h-screen z-50 p-6">
-      <h1 className="text-4xl mb-4">{planetData.name}</h1>
-      {/* <Image src={planetData.overview.source} alt={`${planetData.name}`} width={50} height={50} /> */}
-      <p className="mb-2"> {planetData.overview.content}</p>
-      <Link href={planetData.overview.source}>source</Link>
-      <StatsCard title="Rotaition Time" value={planetData.rotation} />
-      <StatsCard title="Revolution Time" value={planetData.revolution} />
-      <StatsCard title="Radius" value={planetData.radius} />
-      <StatsCard title="Average Temp." value={planetData.temperature} />
+    <div className="text-white font-body h-screen z-50 p-6 text-center">
+      {/* Use SubLinks component here */}
+      <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
+      <div className="flex justify-center mb-4">
+        {/* <Image src={`@/../.${imageSrc}`} alt={`${planetData.name}`} width={50} height={50} /> */}
+        <Image src={planet} alt={`${planetData.name}`} width={50} height={50} />
+      </div>
+      <PlanetInfo heading={planetData.name} description={description} link={sourceLink} />
+
+      <div className="grid gap-2 mt-6">
+        <StatsCard title="Rotation Time" value={planetData.rotation} />
+        <StatsCard title="Revolution Time" value={planetData.revolution} />
+        <StatsCard title="Radius" value={planetData.radius} />
+        <StatsCard title="Average Temp." value={planetData.temperature} />
+      </div>
     </div>
   );
 }
