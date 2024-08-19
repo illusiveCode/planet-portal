@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 
 type SubLinksProps = {
@@ -13,7 +15,7 @@ const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
   ];
 
   return (
-    <div className="flex justify-center space-x-4 z-40 mb-6">
+    <div className="grid grid-cols-3 z-40 mb-6 ">
       {links.map((item) => (
         <button
           key={item.link}
@@ -21,7 +23,7 @@ const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
             console.log(`Clicked link: ${item.link}`); // Log the link to the console
             setCurrentSection(item.link); // Update the current section state
           }}
-          className={`${currentSection === item.link ? "underline" : ""} text-lg`}
+          className={`${currentSection === item.link ? "border-b" : ""} text-h4 uppercase`}
         >
           {item.title}
         </button>

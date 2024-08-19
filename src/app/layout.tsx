@@ -21,7 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${antonio.className} bg-neutral-darkBlue`}>
         <Navbar />
-        <Image className="w-full absolute h-screen object-cover  bg-repeat" src={bgStars} alt="" />
+        <Image
+          className="w-full absolute h-screen object-cover -z-10  bg-repeat"
+          src={bgStars}
+          alt=""
+        />
         <main className="">{children}</main>
       </body>
     </html>

@@ -20,7 +20,7 @@ export default function Page({ params }: { params: { planet: string } }) {
   }
 
   // State to manage the current section (overview, structure, geology)
-  const [currentSection, setCurrentSection] = useState("structure");
+  const [currentSection, setCurrentSection] = useState("overview");
 
   // Dynamically set the image source based on the selected section
   const imageSrc =
@@ -49,9 +49,10 @@ export default function Page({ params }: { params: { planet: string } }) {
     <div className="text-white font-body h-screen z-50 p-6 text-center">
       {/* Use SubLinks component here */}
       <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
+
       <div className="flex justify-center mb-4">
         {/* <Image src={`@/../.${imageSrc}`} alt={`${planetData.name}`} width={50} height={50} /> */}
-        <Image src={planet} alt={`${planetData.name}`} width={50} height={50} />
+        <Image src={planet} alt={`${planetData.name}`} width={111} height={111} />
       </div>
       <PlanetInfo heading={planetData.name} description={description} link={sourceLink} />
 
