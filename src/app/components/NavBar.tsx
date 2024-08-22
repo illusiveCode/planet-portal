@@ -27,7 +27,7 @@ const Navbar: FC = () => {
 
   return (
     <nav className="top-0 border-b border-b-neutral-darkGray py-4 flex justify-between items-center tablet:flex-col text-neutral-white relative">
-      <div className="container flex justify-between ">
+      <div className=" flex justify-between">
         <Link href="/" className="text-lg font-bold uppercase">
           The Planets
         </Link>

@@ -12,9 +12,9 @@ type PlanetInfoProps = {
 const PlanetInfo: FC<PlanetInfoProps> = ({ heading, description, link }) => {
   return (
     <div className="p-4 text-white rounded-md">
-      <h2 className="text-h2 font-bold">{heading}</h2>
-      <p className="mt-2 text-h4">{description}</p>
-      <div className="flex items-center gap-1 mt-8  text-neutral-gray justify-center text-h3">
+      <h2 className="text-h2 font-bold tablet:text-left">{heading}</h2>
+      <p className="mt-2 text-h4 tablet:text-left">{description}</p>
+      <div className="flex items-center gap-1 mt-8 tablet:justify-start text-neutral-gray justify-center text-h3">
         Source:
         <Link
           href={link}

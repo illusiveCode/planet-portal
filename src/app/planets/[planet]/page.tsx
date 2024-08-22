@@ -46,21 +46,35 @@ export default function Page({ params }: { params: { planet: string } }) {
       : planetData.geology.source;
 
   return (
-    <div className="text-white font-body h-screen z-50 p-6 text-center">
+    <div className="text-white font-body h-screen z-50 p-6 text-center ">
       {/* Use SubLinks component here */}
-      <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
-
-      <div className="flex justify-center mb-4">
-        {/* <Image src={`@/../.${imageSrc}`} alt={`${planetData.name}`} width={50} height={50} /> */}
-        <Image src={planet} alt={`${planetData.name}`} width={111} height={111} />
+      <div className="tablet:hidden">
+        <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
       </div>
-      <PlanetInfo heading={planetData.name} description={description} link={sourceLink} />
+      <div className="content | tablet:flex flex-col gap-4 h-full">
+        <div className="flex justify-center mb-4 w-auto h-1/2">
+          {/* <Image src={`@/../.${imageSrc}`} alt={`${planetData.name}`} width={50} height={50} /> */}
+          <Image
+            src={planet}
+            alt={`${planetData.name}`}
+            width={111}
+            height={111}
+            className="object-contain"
+          />
+        </div>
+        <div className="">
+          <div className="grid grid-cols-2 gap-10">
+            <PlanetInfo heading={planetData.name} description={description} link={sourceLink} />
+            <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
+          </div>
 
-      <div className="grid gap-2 mt-6">
-        <StatsCard title="Rotation Time" value={planetData.rotation} />
-        <StatsCard title="Revolution Time" value={planetData.revolution} />
-        <StatsCard title="Radius" value={planetData.radius} />
-        <StatsCard title="Average Temp." value={planetData.temperature} />
+          <div className="grid gap-2 mt-6 tablet:flex">
+            <StatsCard title="Rotation Time" value={planetData.rotation} />
+            <StatsCard title="Revolution Time" value={planetData.revolution} />
+            <StatsCard title="Radius" value={planetData.radius} />
+            <StatsCard title="Average Temp." value={planetData.temperature} />
+          </div>
+        </div>
       </div>
     </div>
   );
