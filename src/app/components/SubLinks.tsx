@@ -1,5 +1,4 @@
 "use client";
-
 import { FC } from "react";
 
 type SubLinksProps = {
@@ -9,25 +8,31 @@ type SubLinksProps = {
 
 const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
   const links = [
-    { title: "Overview", link: "overview" },
-    { title: "Structure", link: "structure" },
-    { title: "Surface", link: "geology" },
+    { title: "Overview", link: "overview", index: "01" },
+    { title: "Structure", link: "structure", index: "02" },
+    { title: "Surface", link: "geology", index: "03" },
   ];
 
   return (
-    <div className="grid grid-cols-3 z-40 mb-6 tablet:grid-cols-1 tablet:place-items-start">
+    <div className="mobile | grid grid-cols-3 z-40 tablet:grid-cols-1 w-full tablet:h-[152px]">
       {links.map((item) => (
         <button
           key={item.link}
           onClick={() => {
-            console.log(`Clicked link: ${item.link}`); // Log the link to the console
-            setCurrentSection(item.link); // Update the current section state
+            setCurrentSection(item.link);
           }}
           className={`${
-            currentSection === item.link ? "tablet:bg-red-500 w-full" : ""
-          } text-h4 uppercase`}
+            currentSection === item.link ? "bg-red-200" : ""
+          } tablet:block text-center tablet:border tablet:text-left w-full h-full text-h3 tablet:font-bold  uppercase p-4`}
         >
-          {item.title}
+          <div>
+            {
+              <span className="hidden text-neutral-gray tablet:inline text-h3 pr-4">
+                {item.index}
+              </span>
+            }
+            <span className="text-white">{item.title}</span>
+          </div>
         </button>
       ))}
     </div>
