@@ -4,7 +4,8 @@ import { useState } from "react";
 import data from "@/../../data/data.json";
 import StatsCard from "@/app/components/StatsCard";
 import PlanetInfo from "@/app/components/PlanetInfo";
-import planet from "@/../../assets/planet-mercury-internal.svg";
+import planet from "@/../../assets/planet-jupiter.svg";
+import planetInternal from "@../../../public/geology-earth.png";
 import SubLinks from "@/app/components/SubLinks"; // Import the new component
 import Image from "next/image";
 
@@ -25,10 +26,10 @@ export default function Page({ params }: { params: { planet: string } }) {
   // Dynamically set the image source based on the selected section
   const imageSrc =
     currentSection === "overview"
-      ? planetData.images.planet
+      ? `/planet-${planetData.name.toLowerCase()}.svg` // Corrected to point to `public`
       : currentSection === "structure"
-      ? planetData.images.internal
-      : planetData.images.geology;
+      ? `/internal-${planetData.name.toLowerCase()}.png` // Corrected to point to `public`
+      : `/geology-${planetData.name.toLowerCase()}.png`; // Corrected to point to `public`
 
   // Dynamically set the description and source link based on the selected section
   const description =
@@ -50,20 +51,27 @@ export default function Page({ params }: { params: { planet: string } }) {
       <div className="tablet:hidden">
         <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
       </div>
-      <hr />
       <div className="container h-full">
         {/* Use SubLinks component here */}
 
         <div className="content | tablet:flex flex-col gap-4 h-full">
-          <div className="flex justify-center mb-4 w-auto h-1/2">
-            {/* <Image src={`@/../.${imageSrc}`} alt={`${planetData.name}`} width={50} height={50} /> */}
+          <div className="flex justify-center mb-4 w-auto h-1/2 relative">
             <Image
-              src={planet}
-              alt={`${planetData.name}`}
               width={111}
               height={111}
-              className="object-contain"
+              src={imageSrc}
+              alt={`${planetData.name}`}
+              className="object-contain w-auto"
             />
+            {currentSection == "geology" && (
+              <Image
+                src={planetInternal}
+                alt={`${planetData.name}`}
+                width={65}
+                height={65}
+                className="object-contain absolute bottom-2"
+              />
+            )}
           </div>
           <div className="">
             <div className="grid tablet:grid-cols-2 place-items-center gap-10">
@@ -75,7 +83,7 @@ export default function Page({ params }: { params: { planet: string } }) {
               </div>
             </div>
 
-            <div className="grid gap-2 my-12 tablet:flex">
+            <div className="grid gap-2 my-12 tablet:flex pb-10">
               <StatsCard title="Rotation Time" value={planetData.rotation} />
               <StatsCard title="Revolution Time" value={planetData.revolution} />
               <StatsCard title="Radius" value={planetData.radius} />

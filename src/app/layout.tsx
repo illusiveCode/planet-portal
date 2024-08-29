@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Navbar from "@/app/components/NavBar";
 import { Antonio } from "next/font/google";
-import bgStars from "@/../../assets/background-stars.svg";
+import bgStars from "@/../../public/background-stars.svg";
 import Image from "next/image";
 
 const antonio = Antonio({ subsets: ["latin"] });

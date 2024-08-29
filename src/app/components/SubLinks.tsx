@@ -22,7 +22,7 @@ const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
             setCurrentSection(item.link);
           }}
           className={`${
-            currentSection === item.link ? "bg-red-200" : ""
+            currentSection === item.link ? "bg-neutral-white " : ""
           } tablet:block text-center tablet:border tablet:text-left w-full h-full text-h3 tablet:font-bold  uppercase p-4`}
         >
           <div>
@@ -31,7 +31,13 @@ const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
                 {item.index}
               </span>
             }
-            <span className="text-white">{item.title}</span>
+            <span
+              className={`${
+                currentSection === item.link ? "text-neutral-darkBlue" : ""
+              } text-neutral-white`}
+            >
+              {item.title}
+            </span>
           </div>
         </button>
       ))}

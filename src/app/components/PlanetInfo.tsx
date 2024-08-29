@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import linkIcon from "@/../../assets/icon-source.svg";
+import linkIcon from "@/../../public/icon-source.svg";
 import Image from "next/image";
 
 type PlanetInfoProps = {

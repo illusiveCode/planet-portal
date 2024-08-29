@@ -4,8 +4,19 @@ import { useState } from "react";
 import Link from "next/link";
 import { FC } from "react";
 import Image from "next/image";
-import hamburgerIcon from "@/../../assets/icon-hamburger.svg";
-import { planets } from "@/../../data/planets";
+import hamburgerIcon from "@/../../public/icon-hamburger.svg";
+// import { planets } from "@/../../data/planets";
+
+const planets = [
+  { name: "MERCURY", color: "bg-primary-skyBlue", href: "/planets/mercury" },
+  { name: "VENUS", color: "bg-primary-gold", href: "/planets/venus" },
+  { name: "EARTH", color: "bg-primary-blue", href: "/planets/earth" },
+  { name: "MARS", color: "bg-primary-brightRed", href: "/planets/mars" },
+  { name: "JUPITER", color: "bg-primary-orange", href: "/planets/jupiter" },
+  { name: "SATURN", color: "bg-primary-gold", href: "/planets/saturn" },
+  { name: "URANUS", color: "bg-primary-teal", href: "/planets/uranus" },
+  { name: "NEPTUNE", color: "bg-primary-blue", href: "/planets/neptune" },
+];
 
 const Navbar: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +28,7 @@ const Navbar: FC = () => {
   return (
     <nav className="top-0 border-b border-b-neutral-darkGray py-4 flex justify-between items-center tablet:flex-col text-neutral-white relative">
       <div className="flex w-full tablet:w-fit justify-between container">
-        <Link href="/" className="text-lg font-bold uppercase">
+        <Link href="/" className="text-lg font-bold uppercase tablet:mb-6">
           The Planets
         </Link>
         {/* Hamburger Icon for mobile */}
@@ -30,7 +41,7 @@ const Navbar: FC = () => {
       <div
         className={`${
           menuOpen
-            ? "block top-16 z-40 left-0 min-h-screen transition duration-150 ease-in-out"
+            ? "block top-14 z-40 left-0 min-h-screen transition duration-150 ease-in-out"
             : "hidden"
         } tablet:hidden absolute left-0 w-full bg-neutral-darkBlue`}
       >
