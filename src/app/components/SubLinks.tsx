@@ -32,9 +32,7 @@ const SubLinks: FC<SubLinksProps> = ({ currentSection, setCurrentSection }) => {
               </span>
             }
             <span
-              className={`${
-                currentSection === item.link ? "text-neutral-darkBlue" : ""
-              } text-neutral-white`}
+              className={`${currentSection === item.link ? "text-black" : ""} text-neutral-white`}
             >
               {item.title}
             </span>

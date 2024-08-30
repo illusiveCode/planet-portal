@@ -4,7 +4,7 @@ import { useState } from "react";
 import data from "@/../../data/data.json";
 import StatsCard from "@/app/components/StatsCard";
 import PlanetInfo from "@/app/components/PlanetInfo";
-import planet from "@/../../assets/planet-jupiter.svg";
+
 import planetInternal from "@../../../public/geology-earth.png";
 import SubLinks from "@/app/components/SubLinks"; // Import the new component
 import Image from "next/image";
@@ -26,10 +26,8 @@ export default function Page({ params }: { params: { planet: string } }) {
   // Dynamically set the image source based on the selected section
   const imageSrc =
     currentSection === "overview"
-      ? `/planet-${planetData.name.toLowerCase()}.svg` // Corrected to point to `public`
-      : currentSection === "structure"
-      ? `/internal-${planetData.name.toLowerCase()}.png` // Corrected to point to `public`
-      : `/geology-${planetData.name.toLowerCase()}.png`; // Corrected to point to `public`
+      ? `${planetData.images.planet}` // Corrected to point to `public`
+      : `${planetData.images.internal}`;
 
   // Dynamically set the description and source link based on the selected section
   const description =
@@ -55,13 +53,13 @@ export default function Page({ params }: { params: { planet: string } }) {
         {/* Use SubLinks component here */}
 
         <div className="content | tablet:flex flex-col gap-4 h-full">
-          <div className="flex justify-center mb-4 w-auto h-1/2 relative">
+          <div className="flex justify-center mx-auto mb-4 w-fit h-1/2 relative">
             <Image
               width={111}
               height={111}
               src={imageSrc}
               alt={`${planetData.name}`}
-              className="object-contain w-auto"
+              className="object-contain w-fit border"
             />
             {currentSection == "geology" && (
               <Image
@@ -69,7 +67,7 @@ export default function Page({ params }: { params: { planet: string } }) {
                 alt={`${planetData.name}`}
                 width={65}
                 height={65}
-                className="object-contain absolute bottom-2"
+                className="object-contain absolute bottom-12"
               />
             )}
           </div>
