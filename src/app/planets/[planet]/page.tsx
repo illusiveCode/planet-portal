@@ -4,32 +4,25 @@ import { useState } from "react";
 import data from "@/../../data/data.json";
 import StatsCard from "@/app/components/StatsCard";
 import PlanetInfo from "@/app/components/PlanetInfo";
-
-import planetInternal from "@../../../public/geology-earth.png";
-import SubLinks from "@/app/components/SubLinks"; // Import the new component
+import SubLinks from "@/app/components/SubLinks";
 import Image from "next/image";
 
 export default function Page({ params }: { params: { planet: string } }) {
-  // Find the planet data from the JSON
   const planetData = data.find(
     (planet) => planet.name.toLowerCase() === params.planet.toLowerCase()
   );
 
-  // Handle case where planet is not found
   if (!planetData) {
     return <div className="text-white font-body h-screen">Planet not found.</div>;
   }
 
-  // State to manage the current section (overview, structure, geology)
   const [currentSection, setCurrentSection] = useState("overview");
 
-  // Dynamically set the image source based on the selected section
   const imageSrc =
-    currentSection === "overview"
-      ? `${planetData.images.planet}` // Corrected to point to `public`
+    currentSection === "overview" || currentSection === "geology"
+      ? `${planetData.images.planet}`
       : `${planetData.images.internal}`;
 
-  // Dynamically set the description and source link based on the selected section
   const description =
     currentSection === "overview"
       ? planetData.overview.content
@@ -50,8 +43,6 @@ export default function Page({ params }: { params: { planet: string } }) {
         <SubLinks currentSection={currentSection} setCurrentSection={setCurrentSection} />
       </div>
       <div className="container h-full">
-        {/* Use SubLinks component here */}
-
         <div className="content | tablet:flex flex-col gap-4 h-full">
           <div className="flex justify-center mx-auto mb-4 w-fit h-1/2 relative">
             <Image
@@ -59,14 +50,14 @@ export default function Page({ params }: { params: { planet: string } }) {
               height={111}
               src={imageSrc}
               alt={`${planetData.name}`}
-              className="object-contain w-fit border"
+              className="object-contain w-fit"
             />
             {currentSection == "geology" && (
               <Image
-                src={planetInternal}
+                src={planetData.images.geology}
                 alt={`${planetData.name}`}
-                width={65}
-                height={65}
+                width={150}
+                height={150}
                 className="object-contain absolute bottom-12"
               />
             )}
