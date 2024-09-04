@@ -50,7 +50,7 @@ export default function Page({ params }: { params: { planet: string } }) {
               height={111}
               src={imageSrc}
               alt={`${planetData.name}`}
-              className="object-contain w-fit"
+              className="object-contain w-fit py-4"
             />
             {currentSection == "geology" && (
               <Image
@@ -63,7 +63,7 @@ export default function Page({ params }: { params: { planet: string } }) {
             )}
           </div>
           <div className="">
-            <div className="grid tablet:grid-cols-2 place-items-center gap-10">
+            <div className="grid tablet:grid-cols-2 place-items-center gap-2">
               <div>
                 <PlanetInfo heading={planetData.name} description={description} link={sourceLink} />
               </div>
