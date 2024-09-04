@@ -24,6 +24,9 @@ const tailwindConfig: Config = {
       },
     },
     extend: {
+      animation: {
+        "slow-spin": "spin 50s linear infinite",
+      },
       colors: {
         neutral: {
           white: "#FFFFFF",
