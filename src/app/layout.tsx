@@ -5,6 +5,7 @@ import { Antonio } from "next/font/google";
 import bgStars from "@/../../public/background-stars.svg";
 import Image from "next/image";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const antonio = Antonio({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         />
         <main className="">{children}</main>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
